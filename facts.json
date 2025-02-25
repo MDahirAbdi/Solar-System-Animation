@@ -1,0 +1,83 @@
+{
+  "sun": {
+    "diameter": "1.39 million km",
+    "mass": "99.86% of Solar System",
+    "temperature": "5,500°C (surface)",
+    "age": "4.6 billion years",
+    "coreTemp": "15 million°C",
+    "composition": "74% Hydrogen",
+    "energy": "Fusion power"
+  },
+  "mercury": {
+    "diameter": "4,879 km",
+    "orbit": "88 days",
+    "temperature": "-173 to 427°C",
+    "moons": "0",
+    "dayLength": "59 Earth days",
+    "surface": "Heavily cratered",
+    "gravity": "0.38g"
+  },
+  "venus": {
+    "diameter": "12,104 km",
+    "surfaceTemp": "~460°C",
+    "rotation": "243 days (retrograde)",
+    "atmosphere": "96% CO2",
+    "pressure": "92x Earth's",
+    "clouds": "Sulfuric acid",
+    "volcanoes": "1,000+"
+  },
+  "earth": {
+    "diameter": "12,742 km",
+    "orbit": "365.25 days",
+    "moons": "1",
+    "water": "71% surface",
+    "atmosphere": "78% Nitrogen",
+    "magneticField": "Yes",
+    "continents": "7"
+  },
+  "mars": {
+    "diameter": "6,792 km",
+    "moons": "2",
+    "orbit": "687 days",
+    "feature": "Olympus Mons",
+    "temperature": "-153 to 20°C",
+    "dustStorms": "Global",
+    "iceCaps": "CO2 and H2O"
+  },
+  "jupiter": {
+    "diameter": "139,820 km",
+    "moons": "95+",
+    "storm": "Great Red Spot",
+    "mass": "2.5x all planets",
+    "rings": "Faint",
+    "magneticField": "20,000x Earth's",
+    "dayLength": "9.9 hours"
+  },
+  "saturn": {
+    "diameter": "116,460 km",
+    "rings": "7 main groups",
+    "moons": "83+",
+    "density": "Less than water",
+    "tilt": "26.7°",
+    "windSpeed": "1,800 km/h",
+    "core": "Rocky"
+  },
+  "uranus": {
+    "diameter": "50,724 km",
+    "rotation": "Retrograde (17 hours)",
+    "moons": "27",
+    "tilt": "97.77°",
+    "color": "Pale cyan",
+    "rings": "13 faint",
+    "temp": "-224°C"
+  },
+  "neptune": {
+    "diameter": "49,244 km",
+    "winds": "Up to 2,100 km/h",
+    "moons": "14",
+    "distance": "4.5 billion km",
+    "color": "Deep blue",
+    "storm": "Great Dark Spot",
+    "temp": "-201°C"
+  }
+}
