@@ -15,7 +15,7 @@ header {
     background: #2a2a2a;
     border-bottom: 1px solid #444;
     position: relative;
-    z-index: 10; /* Ensure header stays above zoomed content */
+    z-index: 10;
 }
 
 header h1 {
@@ -91,7 +91,9 @@ header p {
     opacity: 0.7;
     transition: opacity 0.3s, transform 0.3s;
     pointer-events: auto;
-    width: 180px;
+    width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .card.active {
@@ -109,15 +111,32 @@ header p {
     font-size: 0.9em;
 }
 
+.arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    z-index: 1; /* Below card but above solar system */
+}
+
 .sun-fact { background: #ff9900; }
+.sun-fact .arrow { border-left-color: #ff9900; border-right-color: #ff9900; }
 .mercury-fact { background: #666; }
+.mercury-fact .arrow { border-left-color: #666; border-right-color: #666; }
 .venus-fact { background: #e6b800; }
+.venus-fact .arrow { border-left-color: #e6b800; border-right-color: #e6b800; }
 .earth-fact { background: #0066cc; }
+.earth-fact .arrow { border-left-color: #0066cc; border-right-color: #0066cc; }
 .mars-fact { background: #cc3300; }
+.mars-fact .arrow { border-left-color: #cc3300; border-right-color: #cc3300; }
 .jupiter-fact { background: #8c5523; }
+.jupiter-fact .arrow { border-left-color: #8c5523; border-right-color: #8c5523; }
 .saturn-fact { background: #d4a017; }
+.saturn-fact .arrow { border-left-color: #d4a017; border-right-color: #d4a017; }
 .uranus-fact { background: #99ebff; color: #333; }
+.uranus-fact .arrow { border-left-color: #99ebff; border-right-color: #99ebff; }
 .neptune-fact { background: #3366ff; }
+.neptune-fact .arrow { border-left-color: #3366ff; border-right-color: #3366ff; }
 
 .solar-system {
     height: 40em;
@@ -127,6 +146,7 @@ header p {
     align-items: center;
     position: relative;
     transition: transform 0.5s ease;
+    z-index: 5;
 }
 
 .sun { background: radial-gradient(circle, #ffdb58 0%, #ff9900 70%); height: 6em; width: 6em; border-radius: 50%; box-shadow: 0 0 20px rgba(255, 153, 0, 0.7); position: relative; cursor: pointer; }

@@ -1,57 +1,59 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solar System</title>
-    <link rel="stylesheet" href="input.css" />
-  </head>
-  <body>
-    <header>
-      <h1>The Solar System</h1>
-      <p>An interactive model of our cosmic neighborhood</p>
-      <div class="controls">
-        <button id="toggle-rotation" class="control-btn">Pause</button>
-        <button id="zoom-in" class="control-btn">Zoom In</button>
-        <button id="zoom-out" class="control-btn">Zoom Out</button>
-        <select id="fact-selector">
-          <option value="">Select a fact to display</option>
-          <!-- Options will be populated by JS -->
-        </select>
-      </div>
-    </header>
 
-    <div class="container">
-      <div class="solar-system"> 
-        <div class="sun" data-fact="sun"><span class="label">Sun</span></div>
-        <div class="mercury-container">
-          <div class="mercury" data-fact="mercury"><span class="label">Mercury</span></div>
-        </div>
-        <div class="venus-container">
-          <div class="venus" data-fact="venus"><span class="label">Venus</span></div>
-        </div>
-        <div class="earth-container">
-          <div class="earth" data-fact="earth"><span class="label">Earth</span></div>
-        </div>
-        <div class="mars-container">
-          <div class="mars" data-fact="mars"><span class="label">Mars</span></div>
-        </div>
-        <div class="jupiter-container">
-          <div class="jupiter" data-fact="jupiter"><span class="label">Jupiter</span></div>
-        </div>
-        <div class="saturn-container">
-          <div class="saturn" data-fact="saturn"><span class="label">Saturn</span></div>
-        </div>
-        <div class="uranus-container">
-          <div class="uranus" data-fact="uranus"><span class="label">Uranus</span></div>
-        </div>
-        <div class="neptune-container">
-          <div class="neptune" data-fact="neptune"><span class="label">Neptune</span></div>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar System</title>
+  <link rel="stylesheet" href="input.css" />
+</head>
 
-      <div class="fact-container"></div>
+<body>
+  <header>
+    <h1>The Solar System</h1>
+    <p>An interactive model of our cosmic neighborhood</p>
+    <div class="controls">
+      <button id="toggle-rotation" class="control-btn">Pause</button>
+      <button id="zoom-in" class="control-btn">Zoom In</button>
+      <button id="zoom-out" class="control-btn">Zoom Out</button>
+      <select id="fact-selector">
+        <option value="">Select a fact to display</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="solar-system">
+      <div class="sun" data-fact="sun"><span class="label">Sun</span></div>
+      <div class="mercury-container">
+        <div class="mercury" data-fact="mercury"><span class="label">Mercury</span></div>
+      </div>
+      <div class="venus-container">
+        <div class="venus" data-fact="venus"><span class="label">Venus</span></div>
+      </div>
+      <div class="earth-container">
+        <div class="earth" data-fact="earth"><span class="label">Earth</span></div>
+      </div>
+      <div class="mars-container">
+        <div class="mars" data-fact="mars"><span class="label">Mars</span></div>
+      </div>
+      <div class="jupiter-container">
+        <div class="jupiter" data-fact="jupiter"><span class="label">Jupiter</span></div>
+      </div>
+      <div class="saturn-container">
+        <div class="saturn" data-fact="saturn"><span class="label">Saturn</span></div>
+      </div>
+      <div class="uranus-container">
+        <div class="uranus" data-fact="uranus"><span class="label">Uranus</span></div>
+      </div>
+      <div class="neptune-container">
+        <div class="neptune" data-fact="neptune"><span class="label">Neptune</span></div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <div class="fact-container"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
