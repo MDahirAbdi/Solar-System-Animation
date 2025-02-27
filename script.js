@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const planets = document.querySelectorAll(
     ".sun, .mercury, .venus, .earth, .mars, .jupiter, .saturn, .uranus, .neptune"
   );
-  const factContainer = document.querySelector(".fact-container");
+  const leftCards = document.querySelector(".left-cards");
+  const rightCards = document.querySelector(".right-cards");
 
   let isPaused = false;
   let scale = 1;
@@ -38,76 +39,96 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFactDisplays("details");
   }
 
-  // Check if two rectangles overlap
-  function doOverlap(card1, card2) {
-    const rect1 = card1.getBoundingClientRect();
-    const rect2 = card2.getBoundingClientRect();
-    return !(
-      rect1.right < rect2.left ||
-      rect1.left > rect2.right ||
-      rect1.bottom < rect2.top ||
-      rect1.top > rect2.bottom
-    );
-  }
-
-  // Create scattered fact cards on sides with arrows
+  // Create fixed fact cards on sides
   function createFactCards() {
-    const cardWidth = 220;
-    const cardHeight = 220;
-    const solarRect = solarSystem.getBoundingClientRect();
-    const solarLeft = solarRect.left;
-    const solarRight = solarRect.right;
-    const maxY = window.innerHeight - cardHeight - 100; // Space for header
-    const leftSideMaxX = solarLeft - cardWidth - 20; // Buffer from solar system
-    const rightSideMinX = solarRight + 20; // Buffer from solar system
-    const rightSideMaxX = window.innerWidth - cardWidth;
-    const placedCards = [];
+    const leftPlanets = ["sun", "mercury", "venus", "earth", "mars"];
+    const rightPlanets = ["jupiter", "saturn", "uranus", "neptune"];
 
-    Object.keys(facts).forEach((key, index) => {
+    leftPlanets.forEach((key) => {
       const card = document.createElement("div");
-      card.classList.add("card", `${key}-fact`);
-      card.innerHTML = `
-                <h3>${key.charAt(0).toUpperCase() + key.slice(1)}</h3>
-                <p class="fact-display">${facts[key].details}</p>
-            `;
-
-      const arrow = document.createElement("div");
-      arrow.classList.add("arrow");
-
-      let x, y, overlap, side;
-      do {
-        // Randomly choose left or right side (roughly half on each)
-        side = index % 2 === 0 ? "left" : "right";
-        if (side === "left") {
-          x = Math.random() * leftSideMaxX;
-        } else {
-          x = rightSideMinX + Math.random() * (rightSideMaxX - rightSideMinX);
-        }
-        y = Math.random() * maxY + 100; // Offset from header
-        card.style.left = `${x}px`;
-        card.style.top = `${y}px`;
-        overlap = placedCards.some((existing) => doOverlap(card, existing));
-      } while (overlap);
-
-      // Position arrow
-      const cardRect = card.getBoundingClientRect();
-      const planet = document.querySelector(`.${key}`);
-      const planetRect = planet.getBoundingClientRect();
-      const arrowX = side === "left" ? cardRect.right : cardRect.left - 16; // 16px for arrow width
-      const arrowY = cardRect.top + cardRect.height / 2 - 8; // Center vertically
-      arrow.style.left = `${arrowX}px`;
-      arrow.style.top = `${arrowY}px`;
-      if (side === "left") {
-        arrow.style.borderLeftColor = getComputedStyle(card).backgroundColor;
-        arrow.style.transform = "translateX(8px)"; // Point right
-      } else {
-        arrow.style.borderRightColor = getComputedStyle(card).backgroundColor;
-        arrow.style.transform = "translateX(-8px)"; // Point left
+      card.classList.add(
+        "card",
+        `${key}-fact`,
+        "p-4",
+        "rounded-lg",
+        "shadow-md",
+        "opacity-70",
+        "transition-all",
+        "duration-300",
+        "pointer-events-auto",
+        "w-full",
+        "max-h-[150px]",
+        "overflow-y-auto",
+        key === "uranus" ? "text-[#333]" : "text-white"
+      );
+      switch (key) {
+        case "sun":
+          card.classList.add("bg-[#ff9900]");
+          break;
+        case "mercury":
+          card.classList.add("bg-[#666]");
+          break;
+        case "venus":
+          card.classList.add("bg-[#e6b800]");
+          break;
+        case "earth":
+          card.classList.add("bg-[#0066cc]");
+          break;
+        case "mars":
+          card.classList.add("bg-[#cc3300]");
+          break;
       }
+      card.innerHTML = `
+        <h3 class="m-0 text-base md:text-lg">${
+          key.charAt(0).toUpperCase() + key.slice(1)
+        }</h3>
+        <p class="fact-display mt-2 text-xs md:text-sm">${
+          facts[key].details
+        }</p>
+      `;
+      leftCards.appendChild(card);
+    });
 
-      factContainer.appendChild(card);
-      factContainer.appendChild(arrow);
-      placedCards.push(card);
+    rightPlanets.forEach((key) => {
+      const card = document.createElement("div");
+      card.classList.add(
+        "card",
+        `${key}-fact`,
+        "p-4",
+        "rounded-lg",
+        "shadow-md",
+        "opacity-70",
+        "transition-all",
+        "duration-300",
+        "pointer-events-auto",
+        "w-full",
+        "max-h-[150px]",
+        "overflow-y-auto",
+        key === "uranus" ? "text-[#333]" : "text-white"
+      );
+      switch (key) {
+        case "jupiter":
+          card.classList.add("bg-[#8c5523]");
+          break;
+        case "saturn":
+          card.classList.add("bg-[#d4a017]");
+          break;
+        case "uranus":
+          card.classList.add("bg-[#99ebff]");
+          break;
+        case "neptune":
+          card.classList.add("bg-[#3366ff]");
+          break;
+      }
+      card.innerHTML = `
+        <h3 class="m-0 text-base md:text-lg">${
+          key.charAt(0).toUpperCase() + key.slice(1)
+        }</h3>
+        <p class="fact-display mt-2 text-xs md:text-sm">${
+          facts[key].details
+        }</p>
+      `;
+      rightCards.appendChild(card);
     });
 
     // Update facts on selector change
@@ -155,9 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
     planet.addEventListener("click", () => {
       const factClass = planet.dataset.fact;
       document.querySelectorAll(".card").forEach((card) => {
-        card.classList.remove("active");
+        card.classList.remove("opacity-100", "scale-110");
+        card.classList.add("opacity-70");
         if (card.classList.contains(`${factClass}-fact`)) {
-          card.classList.add("active");
+          card.classList.remove("opacity-70");
+          card.classList.add("opacity-100", "scale-110");
         }
       });
     });
@@ -170,9 +193,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ".sun, .mercury, .venus, .earth, .mars, .jupiter, .saturn, .uranus, .neptune"
       )
     ) {
-      document
-        .querySelectorAll(".card")
-        .forEach((card) => card.classList.remove("active"));
+      document.querySelectorAll(".card").forEach((card) => {
+        card.classList.remove("opacity-100", "scale-110");
+        card.classList.add("opacity-70");
+      });
     }
   });
 });

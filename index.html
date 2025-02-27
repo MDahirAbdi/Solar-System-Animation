@@ -4,53 +4,144 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solar System</title>
-  <link rel="stylesheet" href="input.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes rotation {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    header {
+      z-index: 10;
+    }
+
+    .solar-system {
+      z-index: 5;
+    }
+
+    .paused {
+      animation-play-state: paused;
+    }
+
+    .bg-gradient-radial-sun {
+      background: radial-gradient(circle, #ffdb58, #ff9900 70%);
+    }
+
+    .bg-gradient-radial-earth {
+      background: radial-gradient(circle, #0066cc, #00cc00, #663300);
+    }
+  </style>
 </head>
 
-<body>
-  <header>
-    <h1>The Solar System</h1>
-    <p>An interactive model of our cosmic neighborhood</p>
-    <div class="controls">
-      <button id="toggle-rotation" class="control-btn">Pause</button>
-      <button id="zoom-in" class="control-btn">Zoom In</button>
-      <button id="zoom-out" class="control-btn">Zoom Out</button>
-      <select id="fact-selector">
+<body class="min-h-screen flex flex-col bg-[#1a1a1a] text-white font-sans overflow-y-auto">
+  <header class="text-center p-4 bg-[#2a2a2a] border-b border-[#444]">
+    <h1 class="m-0 text-2xl md:text-3xl lg:text-4xl text-[#ffdb58]">The Solar System</h1>
+    <p class="mt-2 text-[#ccc]">An interactive model of our cosmic neighborhood</p>
+    <div class="mt-2 flex justify-center items-center gap-4 flex-wrap">
+      <button id="toggle-rotation"
+        class="control-btn px-4 py-2 bg-gradient-to-r from-[#ff9900] to-[#ffdb58] text-[#1a1a1a] rounded-full font-bold uppercase shadow-md hover:from-[#ffdb58] hover:to-[#ff9900] hover:shadow-lg hover:-translate-y-1 transition-all">Pause</button>
+      <button id="zoom-in"
+        class="control-btn px-4 py-2 bg-gradient-to-r from-[#ff9900] to-[#ffdb58] text-[#1a1a1a] rounded-full font-bold uppercase shadow-md hover:from-[#ffdb58] hover:to-[#ff9900] hover:shadow-lg hover:-translate-y-1 transition-all">Zoom
+        In</button>
+      <button id="zoom-out"
+        class="control-btn px-4 py-2 bg-gradient-to-r from-[#ff9900] to-[#ffdb58] text-[#1a1a1a] rounded-full font-bold uppercase shadow-md hover:from-[#ffdb58] hover:to-[#ff9900] hover:shadow-lg hover:-translate-y-1 transition-all">Zoom
+        Out</button>
+      <select id="fact-selector" class="px-4 py-2 bg-[#333] text-white rounded-md cursor-pointer">
         <option value="">Select a fact to display</option>
       </select>
     </div>
   </header>
 
-  <div class="container">
-    <div class="solar-system">
-      <div class="sun" data-fact="sun"><span class="label">Sun</span></div>
-      <div class="mercury-container">
-        <div class="mercury" data-fact="mercury"><span class="label">Mercury</span></div>
+  <div class="container flex-1 flex justify-center items-center p-4 relative">
+    <div class="left-cards absolute left-4 top-20 flex flex-col gap-4 w-[200px] md:w-[250px]"></div>
+    <div
+      class="solar-system w-[20rem] h-[20rem] md:w-[30rem] md:h-[30rem] lg:w-[40rem] lg:h-[40rem] flex justify-center items-center relative transition-transform duration-500 ease-in-out">
+
+      <div
+        class="sun w-[6em] h-[6em] md:w-[8em] md:h-[8em] lg:w-[10em] lg:h-[10em] bg-gradient-radial-sun rounded-full shadow-[0_0_20px_rgba(255,153,0,0.7)] cursor-pointer relative"
+        data-fact="sun">
+        <span
+          class="label absolute -top-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Sun</span>
       </div>
-      <div class="venus-container">
-        <div class="venus" data-fact="venus"><span class="label">Venus</span></div>
+
+      <div
+        class="mercury-container absolute w-[10em] h-[10em] md:w-[12em] md:h-[12em] lg:w-[14em] lg:h-[14em] animate-[rotation_8.8s_linear_infinite] rounded-full border border-dashed border-white/20 flex justify-center">
+        <div
+          class="mercury w-[1.2em] h-[1.2em] md:w-[1.5em] md:h-[1.5em] lg:w-[2em] lg:h-[2em] bg-[#a1a1a1] rounded-full -translate-y-1/2 cursor-pointer relative"
+          data-fact="mercury">
+          <span
+            class="label absolute -top-4 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Mercury</span>
+        </div>
       </div>
-      <div class="earth-container">
-        <div class="earth" data-fact="earth"><span class="label">Earth</span></div>
+      <div
+        class="venus-container absolute w-[15em] h-[15em] md:w-[18em] md:h-[18em] lg:w-[20em] lg:h-[20em] animate-[rotation_22.2s_linear_infinite] rounded-full border border-dashed border-white/20 flex items-center">
+        <div
+          class="venus w-[2.8em] h-[2.8em] md:w-[3.5em] md:h-[3.5em] lg:w-[4em] lg:h-[4em] bg-[#e6b800] rounded-full -translate-x-1/2 cursor-pointer relative"
+          data-fact="venus">
+          <span
+            class="label absolute -bottom-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Venus</span>
+        </div>
       </div>
-      <div class="mars-container">
-        <div class="mars" data-fact="mars"><span class="label">Mars</span></div>
+      <div
+        class="earth-container absolute w-[20em] h-[20em] md:w-[24em] md:h-[24em] lg:w-[28em] lg:h-[28em] animate-[rotation_36.5s_linear_infinite] rounded-full border border-dashed border-white/20 flex justify-end items-center">
+        <div
+          class="earth w-[3em] h-[3em] md:w-[3.8em] md:h-[3.8em] lg:w-[4.5em] lg:h-[4.5em] bg-gradient-radial-earth rounded-full translate-x-1/2 cursor-pointer relative"
+          data-fact="earth">
+          <span
+            class="label absolute -top-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Earth</span>
+        </div>
       </div>
-      <div class="jupiter-container">
-        <div class="jupiter" data-fact="jupiter"><span class="label">Jupiter</span></div>
+      <div
+        class="mars-container absolute w-[25em] h-[25em] md:w-[30em] md:h-[30em] lg:w-[35em] lg:h-[35em] animate-[rotation_68.7s_linear_infinite] rounded-full border border-dashed border-white/20 flex items-end justify-center">
+        <div
+          class="mars w-[2.5em] h-[2.5em] md:w-[3.2em] md:h-[3.2em] lg:w-[4em] lg:h-[4em] bg-[#cc3300] rounded-full translate-y-1/2 cursor-pointer relative"
+          data-fact="mars">
+          <span
+            class="label absolute -bottom-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Mars</span>
+        </div>
       </div>
-      <div class="saturn-container">
-        <div class="saturn" data-fact="saturn"><span class="label">Saturn</span></div>
+      <div
+        class="jupiter-container absolute w-[30em] h-[30em] md:w-[36em] md:h-[36em] lg:w-[42em] lg:h-[42em] animate-[rotation_433.2s_linear_infinite] rounded-full border border-dashed border-white/20 flex justify-center">
+        <div
+          class="jupiter w-[5em] h-[5em] md:w-[6em] md:h-[6em] lg:w-[7em] lg:h-[7em] bg-gradient-to-b from-[#d9b38c] to-[#8c5523] rounded-full -translate-y-1/2 cursor-pointer relative"
+          data-fact="jupiter">
+          <span
+            class="label absolute -top-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Jupiter</span>
+        </div>
       </div>
-      <div class="uranus-container">
-        <div class="uranus" data-fact="uranus"><span class="label">Uranus</span></div>
+      <div
+        class="saturn-container absolute w-[34em] h-[34em] md:w-[40em] md:h-[40em] lg:w-[46em] lg:h-[46em] animate-[rotation_1075.9s_linear_infinite] rounded-full border border-dashed border-white/20 flex items-center">
+        <div
+          class="saturn w-[4.5em] h-[4.5em] md:w-[5.5em] md:h-[5.5em] lg:w-[6.5em] lg:h-[6.5em] bg-[#d4a017] rounded-full -translate-x-1/2 cursor-pointer relative"
+          data-fact="saturn">
+          <span
+            class="label absolute -bottom-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Saturn</span>
+          <div
+            class="absolute w-[6em] md:w-[8em] lg:w-[10em] h-[0.5em] bg-[rgba(200,200,200,0.7)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full">
+          </div>
+        </div>
       </div>
-      <div class="neptune-container">
-        <div class="neptune" data-fact="neptune"><span class="label">Neptune</span></div>
+      <div
+        class="uranus-container absolute w-[37em] h-[37em] md:w-[44em] md:h-[44em] lg:w-[50em] lg:h-[50em] animate-[rotation_3068.8s_linear_infinite] rounded-full border border-dashed border-white/20 flex justify-end">
+        <div
+          class="uranus w-[3.8em] h-[3.8em] md:w-[4.8em] md:h-[4.8em] lg:w-[5.8em] lg:h-[5.8em] bg-[#99ebff] rounded-full translate-x-1/2 cursor-pointer relative"
+          data-fact="uranus">
+          <span
+            class="label absolute -top-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Uranus</span>
+        </div>
+      </div>
+      <div
+        class="neptune-container absolute w-[40em] h-[40em] md:w-[48em] md:h-[48em] lg:w-[56em] lg:h-[56em] animate-[rotation_5980.2s_linear_infinite] rounded-full border border-dashed border-white/20 flex items-end">
+        <div
+          class="neptune w-[3.7em] h-[3.7em] md:w-[4.7em] md:h-[4.7em] lg:w-[5.7em] lg:h-[5.7em] bg-[#3366ff] rounded-full translate-y-1/2 cursor-pointer relative"
+          data-fact="neptune">
+          <span
+            class="label absolute -bottom-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm text-center pointer-events-none [text-shadow:0_0_3px_rgba(0,0,0,0.8)]">Neptune</span>
+        </div>
       </div>
     </div>
-
-    <div class="fact-container"></div>
+    <div class="right-cards absolute right-4 top-20 flex flex-col gap-4 w-[200px] md:w-[250px]"></div>
   </div>
 
   <script src="script.js"></script>
